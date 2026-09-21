@@ -151,11 +151,16 @@
   imageEl.src = (window.ZINA_INLINE && window.ZINA_INLINE[button.dataset.image]) || button.dataset.image;
   imageEl.alt = decode(button.dataset.title);
   box.querySelector('#lightbox-title').textContent = decode(button.dataset.title);
+  const edition = box.querySelector('.lightbox-edition');
+  edition.textContent = button.dataset.edition || '';
+  edition.hidden = !button.dataset.edition;
   const enquiry = box.querySelector('.lightbox-enquire');
   enquiry.hidden = !button.dataset.enquiry;
   if (button.dataset.enquiry) {
    const title = decode(button.dataset.enquiry);
-   enquiry.href = 'mailto:zinakazantseva@gmail.com?subject=' + encodeURIComponent('Artwork enquiry - ' + title) + '&body=' + encodeURIComponent('Hello Zina,\n\nI would like to enquire about ' + title + '. Please send me the available sizes, edition details and price.\n\nThank you.');
+   const details = button.dataset.format ? ' (' + button.dataset.format + ', limited edition)' : '';
+   const request = button.dataset.format ? ' Please confirm availability, edition details and price.' : ' Please send me the available sizes, edition details and price.';
+   enquiry.href = 'mailto:zinakazantseva@gmail.com?subject=' + encodeURIComponent('Artwork enquiry - ' + title) + '&body=' + encodeURIComponent('Hello Zina,\n\nI would like to enquire about ' + title + details + '.' + request + '\n\nThank you.');
   }
   box.querySelector('.lightbox-count').textContent = (slideIndex+1).toString().padStart(2,'0') + ' / ' + slides.length.toString().padStart(2,'0');
   box.querySelector('.lightbox-prev').disabled = slideIndex === 0;
