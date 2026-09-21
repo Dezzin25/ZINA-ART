@@ -1,3 +1,4 @@
+/* Build: logo-icons-20260921-r1. SVG arrows are embedded in page markup. */
 /* ZINA: progressively enhanced static content. No libraries or build step. */
 (function () {
  'use strict';
